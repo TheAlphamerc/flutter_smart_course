@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 class LightColor {
   static const Color background = Color(0XFFFFFFFF);
- 
+
   static const Color titleTextColor = const Color(0xff5a5d85);
   static const Color subTitleTextColor = const Color(0xff797878);
-  
-  static const Color bottonTitleTextColor = const Color(0xffd4d4ea);
 
+  static const Color bottonTitleTextColor = const Color(0xffd4d4ea);
 
   static const Color grey = Color(0xff9D99A7);
   static const Color darkgrey = Color(0xff625f6a);
@@ -25,7 +24,7 @@ class LightColor {
   static const Color extraDarkPurple = Color(0xff494c79);
 
   static const Color seeBlue = Color(0xff73d4dd);
-  static const Color darkseeBlue = Color(0xff63c4cf );
+  static const Color darkseeBlue = Color(0xff63c4cf);
   static const Color lightseeBlue = Color(0xffb9e6fc);
 
   static const Color brighter = Color(0xff3754aa);

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'color/light_color.dart';
 
@@ -31,7 +30,7 @@ class AppTheme {
         onError: LightColor.titleTextColor,
         brightness: Brightness.dark),
   );
-  
+
   static TextStyle titleStyle =
       const TextStyle(color: LightColor.titleTextColor, fontSize: 16);
   static TextStyle subTitleStyle =
