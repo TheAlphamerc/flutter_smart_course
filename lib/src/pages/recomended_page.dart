@@ -83,7 +83,7 @@ class RecomendedPage extends StatelessWidget {
   Widget _categoryRow(String title) {
     return Container(
       // margin: EdgeInsets.symmetric(horizontal: 20),
-      height: 66,
+      height: 68,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
