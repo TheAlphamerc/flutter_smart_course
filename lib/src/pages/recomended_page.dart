@@ -332,13 +332,13 @@ class RecomendedPage extends StatelessWidget {
            currentIndex: 1,
            items: [
              _bottomIcons(Icons.home),
-             _bottomIcons(Icons.favorite_border),
+             _bottomIcons(Icons.star_border),
              _bottomIcons(Icons.book),
              _bottomIcons(Icons.person),
 
            ],
             onTap: (index){
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => HomePage()

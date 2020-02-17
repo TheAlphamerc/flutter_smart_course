@@ -47,13 +47,13 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.keyboard_arrow_left, color: Colors.white54, size: 40,),
+                      Icon(Icons.keyboard_arrow_left, color: Colors.white, size: 40,),
                       SizedBox(height:10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text("Search courses", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
-                          Icon(Icons.search,color: Colors.white54, size: 30,)
+                          Icon(Icons.search,color: Colors.white, size: 30,)
                         ],
                       ),
                       SizedBox(height:20),
@@ -95,6 +95,7 @@ class HomePage extends StatelessWidget {
      child: Container(
        child: Row(
          mainAxisAlignment: MainAxisAlignment.start,
+         crossAxisAlignment: CrossAxisAlignment.end,
          children: <Widget>[
           _card(
             primary: LightColor.orange, 
@@ -139,6 +140,7 @@ class HomePage extends StatelessWidget {
      child: Container(
        child: Row(
          mainAxisAlignment: MainAxisAlignment.start,
+         crossAxisAlignment: CrossAxisAlignment.end,
          children: <Widget>[
            _card(
              primary: LightColor.seeBlue,
@@ -182,8 +184,8 @@ class HomePage extends StatelessWidget {
   }
   Widget _card({Color primary = Colors.redAccent, String imgPath,String chipText1 ='',String chipText2 = '', Widget backWidget, Color chipColor = LightColor.orange ,bool isPrimaryCard = false}){
     return Container(
-       height: 190,
-          width: width * .34,
+       height: isPrimaryCard ? 190 : 180,
+          width: isPrimaryCard ? width * .32 : width * .32,
       margin: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
        decoration: BoxDecoration(
             color: primary.withAlpha(200),
@@ -212,7 +214,7 @@ class HomePage extends StatelessWidget {
               Positioned(
                 bottom: 10,
                 left:10,
-                child: _cardInfo(chipText1, chipText2, Colors.black, chipColor,isPrimaryCard:isPrimaryCard),
+                child: _cardInfo(chipText1, chipText2, LightColor.titleTextColor, chipColor,isPrimaryCard:isPrimaryCard),
               )
             ],
           ),
@@ -230,7 +232,7 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.only(right:10 ),
               width: width * .32,
               alignment: Alignment.topCenter,
-              child:Text(title,style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color:isPrimaryCard ? Colors.white : textColor),),
+              child:Text(title,style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color:isPrimaryCard ? Colors.white : textColor),),
             ),
             SizedBox(height:5),
            _chip(courses, primary, height:5,isPrimaryCard:isPrimaryCard)
@@ -456,12 +458,12 @@ class HomePage extends StatelessWidget {
            currentIndex: 0,
            items: [
              _bottomIcons(Icons.home),
-             _bottomIcons(Icons.favorite_border),
+             _bottomIcons(Icons.star_border),
              _bottomIcons(Icons.book),
              _bottomIcons(Icons.person),
            ],
            onTap: (index){
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => RecomendedPage()
