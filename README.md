@@ -13,7 +13,7 @@ Smart course app is built in flutter. App design is based on [Smart Course](http
 
 iOS HomePage              |  iOS Recommend Page 
 :-------------------------:|:-------------------------:
-![](https://github.com/TheAlphamerc/flutter_smart_course/blob/master/screenshots/screenshot_ios_1.png?raw=true)|![](https://github.com/TheAlphamerc/flutter_smart_course/blob/master/screenshots/screenshot_ios_1.png?raw=true)
+![](https://github.com/TheAlphamerc/flutter_smart_course/blob/master/screenshots/screenshot_ios_1.png?raw=true)|![](https://github.com/TheAlphamerc/flutter_smart_course/blob/master/screenshots/screenshot_ios_2.png?raw=true)
 
 ## Pull Requests
 
