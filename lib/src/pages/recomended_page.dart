@@ -6,9 +6,7 @@ import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 import 'package:flutter_smart_course/src/theme/theme.dart';
 
 class RecomendedPage extends StatelessWidget {
-  RecomendedPage({Key key}) : super(key: key);
-
-  double width;
+  const RecomendedPage({Key key}) : super(key: key);
 
   Widget _header(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -80,7 +78,7 @@ class RecomendedPage extends StatelessWidget {
     );
   }
 
-  Widget _categoryRow(String title) {
+  Widget _categoryRow(BuildContext context, String title) {
     return Container(
       // margin: EdgeInsets.symmetric(horizontal: 20),
       height: 68,
@@ -101,7 +99,7 @@ class RecomendedPage extends StatelessWidget {
             height: 10,
           ),
           Container(
-              width: width,
+              width: MediaQuery.of(context).size.width,
               height: 30,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -122,14 +120,14 @@ class RecomendedPage extends StatelessWidget {
     );
   }
 
-  Widget _courseList() {
+  Widget _courseList(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            _courceInfo(CourseList.list[0],
+            _courceInfo(context, CourseList.list[0],
                 _decorationContainerA(Colors.redAccent, -110, -85),
                 background: LightColor.seeBlue),
             Divider(
@@ -137,14 +135,14 @@ class RecomendedPage extends StatelessWidget {
               endIndent: 20,
               indent: 20,
             ),
-            _courceInfo(CourseList.list[1], _decorationContainerB(),
+            _courceInfo(context, CourseList.list[1], _decorationContainerB(),
                 background: LightColor.darkOrange),
             Divider(
               thickness: 1,
               endIndent: 20,
               indent: 20,
             ),
-            _courceInfo(CourseList.list[2], _decorationContainerC(),
+            _courceInfo(context, CourseList.list[2], _decorationContainerC(),
                 background: LightColor.lightOrange2),
           ],
         ),
@@ -152,38 +150,37 @@ class RecomendedPage extends StatelessWidget {
     );
   }
 
-  Widget _card(
-      {Color primaryColor = Colors.redAccent,
-      String imgPath,
-      Widget backWidget}) {
+  Widget _card(BuildContext context,
+      {Color primaryColor = Colors.redAccent, Widget backWidget}) {
     return Container(
-        height: 190,
-        width: width * .34,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-            color: primaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  offset: Offset(0, 5),
-                  blurRadius: 10,
-                  color: Color(0x12000000))
-            ]),
-        child: ClipRRect(
+      height: 190,
+      width: MediaQuery.of(context).size.width * .34,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      decoration: BoxDecoration(
+          color: primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          child: backWidget,
-        ));
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                offset: Offset(0, 5), blurRadius: 10, color: Color(0x12000000))
+          ]),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        child: backWidget,
+      ),
+    );
   }
 
-  Widget _courceInfo(CourseModel model, Widget decoration, {Color background}) {
+  Widget _courceInfo(BuildContext context, CourseModel model, Widget decoration,
+      {Color background}) {
     return Container(
         height: 170,
-        width: width - 20,
+        width: MediaQuery.of(context).size.width - 20,
         child: Row(
           children: <Widget>[
             AspectRatio(
               aspectRatio: .7,
-              child: _card(primaryColor: background, backWidget: decoration),
+              child: _card(context,
+                  primaryColor: background, backWidget: decoration),
             ),
             Expanded(
                 child: Column(
@@ -361,41 +358,43 @@ class RecomendedPage extends StatelessWidget {
     return BottomNavigationBarItem(
         //  backgroundColor: Colors.blue,
         icon: Icon(icon),
-        title: Text(""));
+        label: '');
   }
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: LightColor.purple,
-          unselectedItemColor: Colors.grey.shade300,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: 1,
-          items: [
-            _bottomIcons(Icons.home),
-            _bottomIcons(Icons.star_border),
-            _bottomIcons(Icons.book),
-            _bottomIcons(Icons.person),
-          ],
-          onTap: (index) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
-          },
-        ),
-        body: SingleChildScrollView(
-            child: Container(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: LightColor.background,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: LightColor.purple,
+        unselectedItemColor: Colors.grey.shade300,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: 1,
+        items: [
+          _bottomIcons(Icons.home),
+          _bottomIcons(Icons.star_border),
+          _bottomIcons(Icons.book),
+          _bottomIcons(Icons.person),
+        ],
+        onTap: (index) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        },
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           child: Column(
             children: <Widget>[
               _header(context),
               SizedBox(height: 20),
-              _categoryRow("Start a new career"),
-              _courseList()
+              _categoryRow(context, "Start a new career"),
+              _courseList(context)
             ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

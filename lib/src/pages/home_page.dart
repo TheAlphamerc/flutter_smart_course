@@ -4,9 +4,7 @@ import 'package:flutter_smart_course/src/pages/recomended_page.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
-
-  double width;
+  const HomePage({Key key}) : super(key: key);
 
   Widget _header(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -117,7 +115,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _featuredRowA() {
+  Widget _featuredRowA(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
@@ -125,7 +123,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            _card(
+            _card(context,
                 primary: LightColor.orange,
                 backWidget:
                     _decorationContainerA(LightColor.lightOrange, 50, -30),
@@ -134,8 +132,8 @@ class HomePage extends StatelessWidget {
                 chipText2: "8 Cources",
                 isPrimaryCard: true,
                 imgPath:
-                    "https://jshopping.in/images/detailed/591/ibboll-Fashion-Mens-Optical-Glasses-Frames-Classic-Square-Wrap-Frame-Luxury-Brand-Men-Clear-Eyeglasses-Frame.jpg"),
-            _card(
+                    "https://d1mo3tzxttab3n.cloudfront.net/static/img/shop/560x580/vint0080.jpg"),
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.seeBlue,
                 backWidget: _decorationContainerB(Colors.white, 90, -40),
@@ -143,7 +141,7 @@ class HomePage extends StatelessWidget {
                 chipText2: "8 Cources",
                 imgPath:
                     "https://hips.hearstapps.com/esquireuk.cdnds.net/16/39/980x980/square-1475143834-david-gandy.jpg?resize=480:*"),
-            _card(
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.lightOrange,
                 backWidget: _decorationContainerC(Colors.white, 50, -30),
@@ -151,7 +149,7 @@ class HomePage extends StatelessWidget {
                 chipText2: "8 Cources",
                 imgPath:
                     "https://www.visafranchise.com/wp-content/uploads/2019/05/patrick-findaro-visa-franchise-square.jpg"),
-            _card(
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.seeBlue,
                 backWidget: _decorationContainerD(LightColor.seeBlue, -50, 30,
@@ -167,7 +165,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _featuredRowB() {
+  Widget _featuredRowB(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
@@ -175,7 +173,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            _card(
+            _card(context,
                 primary: LightColor.seeBlue,
                 chipColor: LightColor.seeBlue,
                 backWidget: _decorationContainerD(
@@ -187,7 +185,7 @@ class HomePage extends StatelessWidget {
                 isPrimaryCard: true,
                 imgPath:
                     "https://www.reiss.com/media/product/946/218/silk-paisley-printed-pocket-square-mens-morocco-in-pink-red-20.jpg?format=jpeg&auto=webp&quality=85&width=1200&height=1200&fit=bounds"),
-            _card(
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.lightpurple,
                 backWidget: _decorationContainerE(
@@ -200,7 +198,7 @@ class HomePage extends StatelessWidget {
                 chipText2: "8 Cources",
                 imgPath:
                     "https://i.dailymail.co.uk/i/pix/2016/08/05/19/36E9139400000578-3725856-image-a-58_1470422921868.jpg"),
-            _card(
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.lightOrange,
                 backWidget: _decorationContainerF(
@@ -209,7 +207,7 @@ class HomePage extends StatelessWidget {
                 chipText2: "8 Cources",
                 imgPath:
                     "https://www.reiss.com/media/product/945/066/03-2.jpg?format=jpeg&auto=webp&quality=85&width=632&height=725&fit=bounds"),
-            _card(
+            _card(context,
                 primary: Colors.white,
                 chipColor: LightColor.seeBlue,
                 backWidget: _decorationContainerA(
@@ -220,14 +218,14 @@ class HomePage extends StatelessWidget {
                 chipText1: "Beacame a data analyst",
                 chipText2: "8 Cources",
                 imgPath:
-                    "https://img.alicdn.com/imgextra/i4/52031722/O1CN0165X68s1OaiaYCEX6U_!!52031722.jpg"),
+                    "https://d1mo3tzxttab3n.cloudfront.net/static/img/shop/560x580/vint0080.jpg"),
           ],
         ),
       ),
     );
   }
 
-  Widget _card(
+  Widget _card(BuildContext context,
       {Color primary = Colors.redAccent,
       String imgPath,
       String chipText1 = '',
@@ -235,6 +233,8 @@ class HomePage extends StatelessWidget {
       Widget backWidget,
       Color chipColor = LightColor.orange,
       bool isPrimaryCard = false}) {
+    final width = MediaQuery.of(context).size.width;
+    ;
     return Container(
         height: isPrimaryCard ? 190 : 180,
         width: isPrimaryCard ? width * .32 : width * .32,
@@ -264,7 +264,7 @@ class HomePage extends StatelessWidget {
                 Positioned(
                   bottom: 10,
                   left: 10,
-                  child: _cardInfo(chipText1, chipText2,
+                  child: _cardInfo(context, chipText1, chipText2,
                       LightColor.titleTextColor, chipColor,
                       isPrimaryCard: isPrimaryCard),
                 )
@@ -274,7 +274,8 @@ class HomePage extends StatelessWidget {
         ));
   }
 
-  Widget _cardInfo(String title, String courses, Color textColor, Color primary,
+  Widget _cardInfo(BuildContext context, String title, String courses,
+      Color textColor, Color primary,
       {bool isPrimaryCard = false}) {
     return Align(
       alignment: Alignment.bottomLeft,
@@ -283,14 +284,15 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(right: 10),
-            width: width * .32,
+            width: MediaQuery.of(context).size.width * .32,
             alignment: Alignment.topCenter,
             child: Text(
               title,
               style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                  color: isPrimaryCard ? Colors.white : textColor),
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: isPrimaryCard ? Colors.white : textColor,
+              ),
             ),
           ),
           SizedBox(height: 5),
@@ -488,45 +490,51 @@ class HomePage extends StatelessWidget {
   }
 
   BottomNavigationBarItem _bottomIcons(IconData icon) {
-    return BottomNavigationBarItem(icon: Icon(icon), title: Text(""));
+    return BottomNavigationBarItem(icon: Icon(icon), label: "");
   }
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: LightColor.purple,
-          unselectedItemColor: Colors.grey.shade300,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: 0,
-          items: [
-            _bottomIcons(Icons.home),
-            _bottomIcons(Icons.star_border),
-            _bottomIcons(Icons.book),
-            _bottomIcons(Icons.person),
-          ],
-          onTap: (index) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => RecomendedPage()));
-          },
-        ),
-        body: SingleChildScrollView(
-            child: Container(
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: LightColor.purple,
+        unselectedItemColor: Colors.grey.shade300,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        currentIndex: 0,
+        items: [
+          _bottomIcons(Icons.home),
+          _bottomIcons(Icons.star_border),
+          _bottomIcons(Icons.book),
+          _bottomIcons(Icons.person),
+        ],
+        onTap: (index) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RecomendedPage(),
+            ),
+          );
+        },
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           child: Column(
             children: <Widget>[
               _header(context),
               SizedBox(height: 20),
               _categoryRow("Featured", LightColor.orange, LightColor.orange),
-              _featuredRowA(),
+              _featuredRowA(context),
               SizedBox(height: 0),
               _categoryRow(
                   "Featured", LightColor.purple, LightColor.darkpurple),
-              _featuredRowB()
+              _featuredRowB(context)
             ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

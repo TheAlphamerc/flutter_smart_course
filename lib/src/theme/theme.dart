@@ -3,15 +3,15 @@ import 'color/light_color.dart';
 
 class AppTheme {
   const AppTheme();
-  static ThemeData lightTheme = ThemeData(
-    primarySwatch: Colors.blue,
+  static ThemeData lightTheme = ThemeData.light().copyWith(
+    // primarySwatch: Colors.blue,
     backgroundColor: LightColor.background,
+    scaffoldBackgroundColor: LightColor.background,
     primaryColor: LightColor.purple,
-    accentColor: LightColor.lightblack,
     primaryColorDark: LightColor.Darker,
     primaryColorLight: LightColor.brighter,
     cardTheme: CardTheme(color: LightColor.background),
-    textTheme: TextTheme(display1: TextStyle(color: LightColor.black)),
+    // textTheme: TextTheme(display1: TextStyle(color: LightColor.black)),
     iconTheme: IconThemeData(color: LightColor.lightblack),
     bottomAppBarColor: LightColor.background,
     dividerColor: LightColor.lightGrey,
